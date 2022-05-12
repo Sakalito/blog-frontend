@@ -6,6 +6,7 @@ import axios from 'axios';
 import { onMounted, reactive } from 'vue';
 import HomePage from './pages/home/HomePage.vue';
 import PostPage from './pages/post/PostPage.vue';
+import index from './index.css'
 
 //Creation de la requete
 const httpClient = axios.create({ baseURL: 'http://localhost3001:' })
