@@ -6,6 +6,8 @@ import axios from 'axios';
 import { onMounted, reactive } from 'vue';
 import HomePage from './pages/home/HomePage.vue';
 import PostPage from './pages/post/PostPage.vue';
+import Header from './layout/Header.vue';
+import Footer from './layout/Footer.vue';
 
 //Creation de la requete
 const httpClient = axios.create({ baseURL: 'http://localhost3001:' });
@@ -25,9 +27,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <!-- retourne les resultats-->
-  <router-link to="/" class="font-bold text-red-500">Accueil</router-link>
-  <router-link to="/article">Article</router-link>
+<Header></Header>
   <br />
   <router-view />
 </template>
