@@ -8,9 +8,10 @@ import { formatDate } from '../../utils/date.utils';
 
 const route = useRoute();
 const router = useRouter();
+const postIdInUrl = route.params.id as string;
 
 const state = reactive({
-  postId: '',
+  postId: postIdInUrl,
   post: {
     id: '',
     title: 'Article 1',
@@ -25,16 +26,17 @@ const isValidMongoId = (value: string): boolean => value.length === 24;
 
 const httpClient = axios.create({ baseURL: 'http://localhost:3001' });
 onMounted(async () => {
-  const postIdInUrl = route.params.id as string;
-
-  if (!isValidMongoId(postIdInUrl)) {
-    console.error('INCORRECT POST ID, RECEIVED : ' + postIdInUrl);
+  if (!isValidMongoId(state.postId)) {
+    console.error('INCORRECT POST ID, RECEIVED : ' + state.postId);
     router.push({ name: 'home' });
   }
 
   try {
-    // const response = await httpClient.get<Post>(`/post/${state.postId}`);
-    // console.warn(response.data);
+    const response = await httpClient.get<Post>(`/posts/${state.postId}`);
+
+    console.log('SUCESS: Post with id ' + state.postId, response.data);
+
+    state.post = response.data;
   } catch (error) {
     console.error('ERROR WHILE FETCHING POST ' + postIdInUrl, error);
     router.push({ name: 'home' });
@@ -57,7 +59,7 @@ onMounted(async () => {
     </div>
 
     <article class="px-24">
-      <dd>{{ formatDate(state.post.createdAt) }}</dd>
+      <!-- <dd>{{ formatDate(state.post.createdAt) }}</dd> -->
       <h1 class="text-4xl font-extrabold text-slate-900">
         {{ state.post.title }}
       </h1>

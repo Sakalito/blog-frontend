@@ -1,30 +1,21 @@
 <script setup lang="ts">
+import { onMounted, reactive } from 'vue';
+import axios from 'axios';
+
 import type { Post } from '../post/post.interface';
 import { formatDate } from '../../utils/date.utils';
 
-const posts: Post[] = [
-  {
-    id: '6283861bda83b6bf955b9a2a',
-    title: 'Article 1',
-    description: 'description super longue',
-    createdAt: new Date(),
-    content: '',
-  },
-  {
-    id: '62838621be7f05ca747666e1',
-    title: 'Article 2',
-    description: 'description 2 super longue',
-    createdAt: new Date(),
-    content: '',
-  },
-  {
-    id: '62838627f6d1a242af74ed43',
-    title: 'Article 3',
-    description: 'description 3 super longue',
-    createdAt: new Date(),
-    content: '',
-  },
-];
+const state = reactive({
+  posts: [] as Post[],
+});
+
+const httpClient = axios.create({ baseURL: 'http://localhost:3001' });
+
+onMounted(async () => {
+  const response = await httpClient.get<Post[]>('posts');
+  console.log(response.data);
+  state.posts = response.data;
+});
 </script>
 
 <template>
@@ -40,15 +31,15 @@ const posts: Post[] = [
       </h2>
     </header>
     <section class="">
-      <article v-for="post of posts" class="mb-12">
+      <article v-for="post of state.posts" class="mb-12">
         <div
           class="transition-all p-6 ease-in-out -inset-y-2.5 -inset-x-4 md:-inset-y-4 md:-inset-x-6 sm:rounded-2xl hover:bg-sky-50/70 dark:hover:bg-slate-800/50"
         >
-          <time
+          <!-- <time
             :datetime="formatDate(post.createdAt)"
             class="text-slate-500"
             v-text="formatDate(post.createdAt)"
-          ></time>
+          ></time> -->
           <h3
             class="pt-2 text-base font-bold tracking-tight text-slate-900"
           >
