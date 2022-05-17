@@ -1,21 +1,17 @@
 <script setup lang="ts">
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
-import HelloWorld from './components/HelloWorld.vue';
-import axios from 'axios';
 import { onMounted, reactive } from 'vue';
-import HomePage from './pages/home/HomePage.vue';
-import PostPage from './pages/post/PostPage.vue';
-import Header from './layout/Header.vue';
-import Footer from './layout/Footer.vue';
+import axios from 'axios';
 
-//Creation de la requete
+import Header from './layout/Header.vue';
+
+// Creation de la requete
 const httpClient = axios.create({ baseURL: 'http://localhost:3001' });
-//met blog en état reactif
+// met blog en état reactif
 const state = reactive({
   blog: '',
 });
-//appele les requetes
+
+// appele les requetes
 onMounted(async () => {
   const message = await httpClient.get('/');
   console.log(message);
@@ -27,18 +23,8 @@ onMounted(async () => {
 </script>
 
 <template>
-<Header></Header>
-  <br />
-  <router-view />
+  <Header></Header>
+  <main>
+    <router-view />
+  </main>
 </template>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
