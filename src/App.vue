@@ -10,7 +10,7 @@ import Header from './layout/Header.vue';
 import Footer from './layout/Footer.vue';
 
 //Creation de la requete
-const httpClient = axios.create({ baseURL: 'http://localhost3001:' });
+const httpClient = axios.create({ baseURL: 'http://localhost:3001' });
 //met blog en état reactif
 const state = reactive({
   blog: '',

@@ -21,11 +21,6 @@ export const appRoutes: RouteRecordRaw[] = [
     component: () => import('./pages/post/PostEditPage.vue'),
   },
   {
-    name: 'newpage',
-    path: '/newpage',
-    component: () => import('./pages/post/PostEditPage.vue'),
-  },
-  {
     name: 'notfounderrorpage',
     path: '/:catchAll(.*)*',
     component : () => import('./pages/Error/NotFoundErrorPage.vue'),

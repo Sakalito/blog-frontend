@@ -1,5 +1,5 @@
 <template>
-  <router-link to="/newpage">
+  <router-link to="/edit">
     <img
       src="../../assets/editor.png"
       class="object-right-top w-auto h-5"
