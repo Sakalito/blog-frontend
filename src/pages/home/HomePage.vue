@@ -13,7 +13,6 @@ const httpClient = axios.create({ baseURL: 'http://localhost:3001' });
 
 onMounted(async () => {
   const response = await httpClient.get<Post[]>('posts');
-  console.log(response.data);
   state.posts = response.data;
 });
 </script>
@@ -35,11 +34,11 @@ onMounted(async () => {
         <div
           class="transition-all p-6 ease-in-out -inset-y-2.5 -inset-x-4 md:-inset-y-4 md:-inset-x-6 sm:rounded-2xl hover:bg-sky-50/70 dark:hover:bg-slate-800/50"
         >
-          <!-- <time
+          <time
             :datetime="formatDate(post.createdAt)"
             class="text-slate-500"
             v-text="formatDate(post.createdAt)"
-          ></time> -->
+          ></time>
           <h3
             class="pt-2 text-base font-bold tracking-tight text-slate-900"
           >

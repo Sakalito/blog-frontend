@@ -16,7 +16,7 @@ const state = reactive({
     id: '',
     title: 'Article 1',
     description: 'description 1',
-    createdAt: new Date(),
+    createdAt: new Date().toString(),
     content: '<div class="text-red-500">html content here</div>',
   } as Post,
 });
@@ -59,7 +59,7 @@ onMounted(async () => {
     </div>
 
     <article class="px-24">
-      <!-- <dd>{{ formatDate(state.post.createdAt) }}</dd> -->
+      <dd>{{ formatDate(state.post.createdAt) }}</dd>
       <h1 class="text-4xl font-extrabold text-slate-900">
         {{ state.post.title }}
       </h1>
