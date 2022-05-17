@@ -1,3 +1,42 @@
+<script setup lang="ts">
+interface Post {
+  id: string;
+  title: string;
+  description: string;
+  createdAt: Date;
+}
+
+const posts: Post[] = [
+  {
+    id: '6283861bda83b6bf955b9a2a',
+    title: 'Article 1',
+    description: 'description super longue',
+    createdAt: new Date(),
+  },
+  {
+    id: '62838621be7f05ca747666e1',
+    title: 'Article 2',
+    description: 'description 2 super longue',
+    createdAt: new Date(),
+  },
+  {
+    id: '62838627f6d1a242af74ed43',
+    title: 'Article 3',
+    description: 'description 3 super longue',
+    createdAt: new Date(),
+  },
+];
+
+const formatDate = (date: Date): string =>
+  date.toLocaleDateString('fr', {
+    day: '2-digit',
+    month: 'long',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+</script>
+
 <template>
   <div class="p-3 md:p-6">
     <header class="my-16 sm:text-center">
@@ -10,29 +49,31 @@
         Bienvenue sur le blog de l'assocation DevFamily
       </h2>
     </header>
-    <section
-      class="sm:pb-12 sm:ml-[calc(2rem+1px)] md:ml-[calc(3.5rem+1px)] lg:ml-[max(calc(14.5rem+1px),calc(100%-48rem))]"
-    >
-      <div class="space-y-16">
-        <article class="group">
-          <div
-            class="-inset-y-2.5 -inset-x-4 md:-inset-y-4 md:-inset-x-6 sm:rounded-2xl group-hover:bg-slate-50/70 dark:group-hover:bg-slate-800/50"
+    <section class="">
+      <article v-for="post of posts" class="mb-12">
+        <div
+          class="transition-all p-6 ease-in-out -inset-y-2.5 -inset-x-4 md:-inset-y-4 md:-inset-x-6 sm:rounded-2xl hover:bg-sky-50/70 dark:hover:bg-slate-800/50"
+        >
+          <time
+            :datetime="formatDate(post.createdAt)"
+            class="text-slate-500"
+            v-text="formatDate(post.createdAt)"
+          ></time>
+          <h3
+            class="pt-2 text-base font-bold tracking-tight text-slate-900"
           >
-            <div class="">
-              <h3
-                class="pt-8 text-base font-bold tracking-tight text-slate-900 lg:pt-0"
-              >
-                Article 1
-              </h3>
-            </div>
-
-            <time datetime="2022-05-16">Lundi 16 Mai 2022</time>
-          </div>
-          <span
-            class="-inset-y-2.5 -inset-x-4 md:-inset-y-4 md:-inset-x-6 sm:rounded-2xl"
-          ></span>
-        </article>
-      </div>
+            {{ post.title }}
+          </h3>
+          <p class="mt-2 mb-4 text-slate-600">
+            {{ post.description }}
+          </p>
+          <RouterLink
+            :to="'/post/' + post.id"
+            class="font-medium text-sky-500"
+            v-text="'Read more ...'"
+          />
+        </div>
+      </article>
     </section>
   </div>
 </template>
