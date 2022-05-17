@@ -1,45 +1,68 @@
-<template>
-  <router-link to="/edit">
-    <img src="/assets/editor.png" class="object-right-top w-auto h-5" />
-  </router-link>
-  <dd>Date of article publication</dd>
+<script setup lang="ts">
+import { onMounted, reactive } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import axios from 'axios';
 
-  <h1 class="text-red-500">Title of article</h1>
-  <p>
-    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas
-    delectus dignissimos obcaecati sunt optio accusamus magni, fugiat
-    praesentium perspiciatis? Voluptate minima qui id, inventore
-    reprehenderit cumque eligendi quae velit quod officiis ex? In
-    doloremque error ea autem, aspernatur at ducimus facilis consequatur
-    laudantium molestiae alias vitae consectetur, cum facere? Dicta
-    veritatis perspiciatis aliquid dolores assumenda, dignissimos
-    accusantium quia minus officia! Cumque molestias recusandae neque
-    impedit ea laudantium, fugiat ipsum inventore amet odit veritatis dicta
-    autem culpa! Incidunt, quaerat. Aut ab similique exercitationem
-    voluptatum unde nesciunt id sit nemo sapiente commodi repudiandae quos
-    iusto dolorem numquam excepturi odit, velit mollitia cupiditate nostrum
-    aliquam quam impedit architecto cumque sunt. Ipsam nobis facilis
-    officiis, voluptatem iusto est optio nemo illo necessitatibus. Repellat
-    fugit repudiandae praesentium doloremque dicta, reiciendis nobis
-    aspernatur dolores totam quis ipsum non alias. Quos veritatis odio
-    laudantium vel repellat tempora similique dolores possimus deserunt.
-    Aliquid repudiandae mollitia sed inventore illum deleniti nam veniam
-    architecto eum dolore eos iure ex repellendus, ea temporibus voluptatem
-    voluptatibus molestiae expedita dolores voluptate. Eos accusantium
-    dolor illum velit eius qui inventore quae doloremque nobis voluptatibus
-    maiores sunt vitae, cumque consequatur, deleniti nihil id neque?
-    Nesciunt, quisquam ad! Eveniet eos quas, necessitatibus incidunt eaque
-    deleniti nihil!
-  </p>
-  <a href="https://headlessui.dev/" class="w-auto h-5">
-    <img src="/assets/headless.jpg" />
-  </a>
-  <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus cum
-    soluta praesentium repellendus repudiandae? Facere esse quibusdam
-    labore quis accusantium cupiditate voluptate eligendi est corporis
-    repellat in deleniti deserunt nulla, temporibus facilis aut mollitia
-    voluptatem officiis dolorum suscipit odit animi! Sapiente deserunt illo
-    animi minima alias accusamus totam libero laudantium.
-  </p>
+import type { Post } from './post.interface';
+import { formatDate } from '../../utils/date.utils';
+
+const route = useRoute();
+const router = useRouter();
+
+const state = reactive({
+  postId: '',
+  post: {
+    id: '',
+    title: 'Article 1',
+    description: 'description 1',
+    createdAt: new Date(),
+    content: '<div class="text-red-500">html content here</div>',
+  } as Post,
+});
+
+// TODO: must validate if correct mongoId
+const isValidMongoId = (value: string): boolean => value.length === 24;
+
+const httpClient = axios.create({ baseURL: 'http://localhost:3001' });
+onMounted(async () => {
+  const postIdInUrl = route.params.id as string;
+
+  if (!isValidMongoId(postIdInUrl)) {
+    console.error('INCORRECT POST ID, RECEIVED : ' + postIdInUrl);
+    router.push({ name: 'home' });
+  }
+
+  try {
+    // const response = await httpClient.get<Post>(`/post/${state.postId}`);
+    // console.warn(response.data);
+  } catch (error) {
+    console.error('ERROR WHILE FETCHING POST ' + postIdInUrl, error);
+    router.push({ name: 'home' });
+  }
+});
+</script>
+
+<template>
+  <div class="p-8">
+    <div
+      class="flex justify-between px-8 mb-16 font-medium text-slate-600"
+    >
+      <RouterLink to="/" class="inline-flex"> &lt; Go back </RouterLink>
+      <RouterLink to="/edit" class="inline-flex">
+        <img
+          src="/assets/editor.png"
+          class="object-right-top w-auto h-5"
+        />
+      </RouterLink>
+    </div>
+
+    <article class="px-24">
+      <dd>{{ formatDate(state.post.createdAt) }}</dd>
+      <h1 class="text-4xl font-extrabold text-slate-900">
+        {{ state.post.title }}
+      </h1>
+      <p class="my-8 mb-16">{{ state.post.description }}</p>
+      <section v-html="state.post.content"></section>
+    </article>
+  </div>
 </template>

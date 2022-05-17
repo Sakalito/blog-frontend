@@ -1,14 +1,13 @@
 <script setup lang="ts">
 const links = [
   { label: 'Acceuil', to: '/' },
-  { label: 'Article', to: '/article' },
   { label: 'Contact', to: '/contact' },
 ];
 </script>
 
 <template>
   <header
-    class="sticky top-0 z-40 flex justify-between w-full transition-colors duration-500 backdrop-blur lg:z-50 lg:border-b lg:border-slate-900/10 bg-white/95 supports-backdrop-blur:bg-white/60"
+    class="sticky top-0 z-40 flex justify-between w-full px-3 transition-colors duration-500 backdrop-blur lg:z-50 lg:border-b lg:border-slate-900/10 bg-white/95 supports-backdrop-blur:bg-white/60"
   >
     <div
       class="border-b max-w-8xl border-slate-900/10 lg:px-8 lg:border-0 dark:border-slate-300/10"

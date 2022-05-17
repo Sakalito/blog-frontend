@@ -1,10 +1,6 @@
 <script setup lang="ts">
-interface Post {
-  id: string;
-  title: string;
-  description: string;
-  createdAt: Date;
-}
+import type { Post } from '../post/post.interface';
+import { formatDate } from '../../utils/date.utils';
 
 const posts: Post[] = [
   {
@@ -12,29 +8,23 @@ const posts: Post[] = [
     title: 'Article 1',
     description: 'description super longue',
     createdAt: new Date(),
+    content: '',
   },
   {
     id: '62838621be7f05ca747666e1',
     title: 'Article 2',
     description: 'description 2 super longue',
     createdAt: new Date(),
+    content: '',
   },
   {
     id: '62838627f6d1a242af74ed43',
     title: 'Article 3',
     description: 'description 3 super longue',
     createdAt: new Date(),
+    content: '',
   },
 ];
-
-const formatDate = (date: Date): string =>
-  date.toLocaleDateString('fr', {
-    day: '2-digit',
-    month: 'long',
-    year: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-  });
 </script>
 
 <template>
