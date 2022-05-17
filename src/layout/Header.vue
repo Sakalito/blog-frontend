@@ -1,4 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const links = [
+  { label: 'Acceuil', to: '/' },
+  { label: 'Article', to: '/article' },
+  { label: 'Contact', to: '/contact' },
+];
+</script>
 
 <template>
   <header
@@ -15,26 +21,13 @@
       <div class="relative items-center hidden ml-auto lg:flex">
         <nav class="text-sm font-semibold leading-6 text-slate-700">
           <ul class="flex space-x-8">
-            <li>
-              <router-link
-                to="/"
+            <li v-for="link of links">
+              <RouterLink
+                :to="link.to"
                 class="px-4 py-4 mx-auto font-bold text-black hover:text-sky-500 dark:hover:text-sky-400"
-                >Accueil</router-link
               >
-            </li>
-            <li>
-              <router-link
-                to="/article"
-                class="px-4 py-4 mx-auto font-bold text-black hover:text-sky-500"
-                >Article</router-link
-              >
-            </li>
-            <li>
-              <router-link
-                to="/contact"
-                class="px-4 py-4 mx-auto font-bold text-black hover:text-sky-500"
-                >Contact</router-link
-              >
+                {{ link.label }}
+              </RouterLink>
             </li>
           </ul>
         </nav>
