@@ -13,12 +13,8 @@ const state = reactive({
 
 // appele les requetes
 onMounted(async () => {
-  const message = await httpClient.get('/');
-  console.log(message);
-  const blog = await httpClient.get('/blog');
-  console.log(blog);
-  console.log(blog.data);
-  state.blog = blog.data;
+  const response = await httpClient.get('/blog');
+  state.blog = response.data;
 });
 </script>
 

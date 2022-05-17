@@ -1,3 +1,5 @@
+<script setup lang="ts"></script>
+
 <template>
   <header>
     <div
@@ -10,7 +12,7 @@
           href="#"
           class="mr-3 flex-none w-[2.0625rem] overflow-hidden md:w-auto"
         >
-          <img src="../../assets/df.ico" class="relative w-auto h-20" />
+          <img src="/df.ico" class="relative w-auto h-20" />
         </a>
       </div>
       <div class="flex">
@@ -42,7 +44,6 @@
           </nav>
         </div>
       </div>
-
     </div>
   </header>
 </template>

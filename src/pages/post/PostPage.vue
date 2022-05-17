@@ -1,9 +1,6 @@
 <template>
   <router-link to="/edit">
-    <img
-      src="../../assets/editor.png"
-      class="object-right-top w-auto h-5"
-    />
+    <img src="/assets/editor.png" class="object-right-top w-auto h-5" />
   </router-link>
   <dd>Date of article publication</dd>
 
@@ -35,7 +32,7 @@
     deleniti nihil!
   </p>
   <a href="https://headlessui.dev/" class="w-auto h-5">
-    <img src="../../assets/headless.jpg" />
+    <img src="/assets/headless.jpg" />
   </a>
   <p>
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus cum

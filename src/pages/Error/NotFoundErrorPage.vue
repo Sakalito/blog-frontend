@@ -5,7 +5,7 @@
     <h1 class="my-10 text-3xl font-extrabold md:my-5">Not found...</h1>
     <img
       class="block w-full lg:w-10/12 xl:w-8/12 2xl:w-7/12"
-      src="../../assets/404.svg"
+      src="/assets/404.svg"
       alt="error 404 page not found"
     />
   </div>
