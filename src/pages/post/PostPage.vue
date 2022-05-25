@@ -45,18 +45,12 @@ onMounted(async () => {
 
 <template>
   <div class="p-8">
-    <div
-      class="flex justify-between px-8 mb-16 font-medium text-slate-600"
-    >
+    <div class="flex justify-between px-8 mb-16 font-medium text-slate-600">
       <RouterLink to="/" class="inline-flex"> &lt; Go back </RouterLink>
       <RouterLink :to="'/edit/'+state.postId" class="inline-flex">
-        <img
-          src="/assets/editor.png"
-          class="object-right-top w-auto h-5"
-        />
+        <img src="/assets/editor.png" class="w-auto h-5" />
       </RouterLink>
     </div>
-
     <article class="px-24">
       <dd>{{ formatDate(state.post.createdAt) }}</dd>
       <h1 class="text-4xl font-extrabold text-slate-900">

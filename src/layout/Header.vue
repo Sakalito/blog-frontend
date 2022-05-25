@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const links = [
-  { label: 'Acceuil', to: '/' },
+  { label: 'Home', to: '/' },
   { label: 'Contact', to: '/contact' },
 ];
 </script>

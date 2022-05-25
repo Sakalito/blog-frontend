@@ -26,10 +26,14 @@ onMounted(async () => {
         Blog DevFamily
       </h1>
       <h2 class="text-lg text-slate-700 dark:text-slate-400">
-        Bienvenue sur le blog de l'assocation DevFamily
+        Welcome to the DevFamily blog
       </h2>
     </header>
+          <RouterLink to="/create" class="flex items-center justify-center w-40 h-12 font-bold text-white border-black bg-slate-600 rounded-2xl hover:bg-slate-900">
+            Create an article
+      </RouterLink>
     <section class="">
+
       <article v-for="post of state.posts" class="mb-12">
         <div
           class="transition-all p-6 ease-in-out -inset-y-2.5 -inset-x-4 md:-inset-y-4 md:-inset-x-6 sm:rounded-2xl hover:bg-sky-50/70 dark:hover:bg-slate-800/50"

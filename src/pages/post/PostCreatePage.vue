@@ -1,9 +1,14 @@
 <template>
   <h1 class="font-bold text-center">Create an article</h1>
-  <Editor v-model="state.content"
-   />
+  <h3>Title</h3>
+  <input type="text" v-model="state.title" class="border-black" />
+  <h3>Description</h3>
+  <textarea v-model="state.description"></textarea>
+  <h3>Content</h3>
+  <Editor v-model="state.content" />
 
   <button
+    href="./../home/HomePage.vue"
     class="flex items-center justify-center w-40 h-12 font-bold text-white border-black bg-slate-600 rounded-2xl hover:bg-slate-900"
     @click="submit"
   >
@@ -17,7 +22,12 @@ import Editor from '@tinymce/tinymce-vue';
 import axios from 'axios';
 import tinymce from 'tinymce';
 
-const state = reactive({ content: '', canSend: false });
+const state = reactive({
+  content: '',
+  canSend: false,
+  title: '',
+  description: '',
+});
 const httpClient = axios.create({ baseURL: 'http://localhost:3001' });
 
 const submit = async () => {
@@ -25,8 +35,8 @@ const submit = async () => {
   console.log(state.canSend);
   if (state.canSend)
     await httpClient.post('/posts', {
-      title: '',
-      description: '',
+      title: state.title,
+      description: state.description,
       content: state.content,
     });
   state.canSend = false;
