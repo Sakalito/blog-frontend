@@ -2,7 +2,6 @@
 import { onMounted, reactive } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import axios from 'axios';
-
 import type { Post } from './post.interface';
 import { formatDate } from '../../utils/date.utils';
 
@@ -50,7 +49,7 @@ onMounted(async () => {
       class="flex justify-between px-8 mb-16 font-medium text-slate-600"
     >
       <RouterLink to="/" class="inline-flex"> &lt; Go back </RouterLink>
-      <RouterLink to="/edit" class="inline-flex">
+      <RouterLink :to="'/edit/'+state.postId" class="inline-flex">
         <img
           src="/assets/editor.png"
           class="object-right-top w-auto h-5"

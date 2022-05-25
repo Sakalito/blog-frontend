@@ -19,7 +19,7 @@ export const appRoutes: RouteRecordRaw[] = [
   },
   {
     name: 'edit',
-    path: '/edit',
+    path: '/edit/:id',
     component: () => import('./pages/post/PostEditPage.vue'),
   },
   {
